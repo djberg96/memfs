@@ -32,7 +32,7 @@ module MemFs
   end
 
   def self.windows?
-    /mswin|bccwin|mingw/ =~ RUBY_PLATFORM
+    Gem.win_platform?
   end
 
   require 'memfs/file_system'
