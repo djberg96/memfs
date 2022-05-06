@@ -373,6 +373,18 @@ module MemFs
       end
     end
 
+    describe '#nlink', :nlink do
+      context 'when the entry is a regular file' do
+        it "returns expected nlinks for file" do
+          expect(file_stat.nlink).to eq(1)
+        end
+
+        it "returns expected nlinks for file" do
+          expect(dir_stat.nlink).to eq(1)
+        end
+      end
+    end
+
     describe '#ftype' do
       context 'when the entry is a regular file' do
         it "returns 'file'" do

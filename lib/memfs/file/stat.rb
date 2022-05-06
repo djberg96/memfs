@@ -60,6 +60,10 @@ module MemFs
         @entry = dereference ? entry.dereferenced : entry
       end
 
+      def nlink
+        1
+      end
+
       def owned?
         uid == Process.euid
       end
