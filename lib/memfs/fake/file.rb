@@ -7,6 +7,7 @@ module MemFs
   module Fake
     class File < Entry
       attr_accessor :content
+      attr_accessor :nlink
 
       def close
         @closed = true
@@ -20,6 +21,7 @@ module MemFs
         super
         @content = Content.new
         @closed = false
+        @nlink = 1
       end
 
       def pos

@@ -142,6 +142,8 @@ module MemFs
 
     def self.link(old_name, new_name)
       fs.link old_name, new_name
+      entry = fs.find!(old_name)
+      entry.nlink += 1 if entry.respond_to?(:nlink=)
       SUCCESS
     end
 
@@ -261,6 +263,7 @@ module MemFs
 
       entry.pos = 0 if entry.respond_to?(:pos=)
       entry.content.clear if truncate_file?
+      entry.nlink += 1 if entry.respond_to?(:nlink=)
     end
     # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
 

@@ -382,6 +382,13 @@ module MemFs
         it "returns expected nlinks for file" do
           expect(dir_stat.nlink).to eq(1)
         end
+
+        it "returns expected nlinks after link command" do
+          File.link(entry.name, 'temp.txt')
+          expect(File::Stat.new(entry.name).nlink).to eq(2)
+          File.link(entry.name, 'temp2.txt')
+          expect(File::Stat.new(entry.name).nlink).to eq(3)
+        end
       end
     end
 

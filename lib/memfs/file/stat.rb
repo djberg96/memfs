@@ -61,7 +61,7 @@ module MemFs
       end
 
       def nlink
-        1
+        entry.respond_to?(:nlink) ? entry.nlink : 1
       end
 
       def owned?
